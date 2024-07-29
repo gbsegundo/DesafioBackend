@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+  app:
+    container_name: app-conta
+    image: app-conta
+    build: ./
+    ports:
+      - "8013:8013"
+    depends_on:
+      - dbpostgresql
+  dbpostgresql:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=desafio

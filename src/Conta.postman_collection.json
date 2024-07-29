@@ -1,0 +1,302 @@
+{
+	"info": {
+		"name": "Desafio Backend - Contas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastrar Conta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dataVencimento\":\"26/07/2024\",\"dataPagamento\":\"27/07/2024\",\"valor\":\"1.250,70\",\"descricao\":\"aluguel\",\"situacao\":\"Pendente\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/cadastraConta",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"cadastraConta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Importa Conta CSV",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"body": {		
+					"mode": "form-data",
+                    "urlencoded": [
+                        {
+                            "key": "file",
+                            "value": "conta.csv"
+                        }
+                    ]
+				},
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/importaContaCSV",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"importaContaCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Conta",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"dataVencimento\":\"26/07/2024\",\"dataPagamento\":\"27/07/2024\",\"valor\":\"1.250,70\",\"descricao\":\"aluguel\",\"situacao\":\"Pendente\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/atualizaConta/:ID_CONTA",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"atualizaConta",
+						"ID_CONTA"
+					],
+					"variable": [
+						{
+							"key": "ID_CONTA"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Situação da Conta",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/atualizaSituacao/:ID_CONTA",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"atualizaSituacao",
+						"ID_CONTA"
+					],
+					"variable": [
+						{
+							"key": "ID_CONTA"
+						}
+					],
+					"query": [
+						{
+							"key": "situacao",
+							"value": "",
+							"disabled": false
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter conta pelo ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/obterContaPorId/:ID_CONTA",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"obterContaPorId",
+						"ID_CONTA"
+					],
+					"variable": [
+						{
+							"key": "ID_CONTA"
+						}
+					],
+					"query": [
+						{
+							"key": "dataPagamentoInicio",
+							"value": "",
+							"disabled": false
+						},
+						{
+							"key": "dataPagamentoFim",
+							"value": "",
+							"disabled": false
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter valor total pago",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/obterValorTotalPago",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"obterValorTotalPago"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obter a lista de contas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXNhZmlvIiwiZXhwIjoxNzIyMDczNjkzLCJpYXQiOjE3MjIwNTU2OTN9.hqQf-ALUK0aUTOgVUHf2_kemch7G6fMElJnRUukKyPwOkGfYe-0edqOqqUi2UgyxQvS2XKiU6jSEiw-0KuHmAA",
+						"type": "JWT"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8013/desafio/v1/conta/obterListaConta",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"v1",
+						"conta",
+						"obterListaConta"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": false
+						},
+						{
+							"key": "rowsPerPage",
+							"value": "10",
+							"disabled": false
+						},
+						{
+							"key": "descricao",
+							"value": "",
+							"disabled": false
+						},
+						{
+							"key": "dataVencimento",
+							"value": "",
+							"disabled": false
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Autenticação",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:8013/desafio/authenticate",
+					"host": [
+						"http://localhost:8013"
+					],
+					"path": [
+						"desafio",
+						"authenticate"
+					],
+					"body": {
+						"mode": "raw",
+						"raw": "{\"username\":\"desafio\",\"password\":\"password\"}",
+						"options": {
+							"raw": {
+								"language": "json"
+							}
+						}
+					}
+				}
+			},
+			"response": []
+		}
+	]
+}
