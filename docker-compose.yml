@@ -1,38 +1,18 @@
-version: "3.8"
-
+version: '3.1'
 services:
-  postgresdb:
-    image: postgres
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - POSTGRES_USER=$POSTGRESDB_USER
-      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD
-      - POSTGRES_DB=$POSTGRESDB_DATABASE
-    ports:
-      - $POSTGRESDB_LOCAL_PORT:$POSTGRESDB_DOCKER_PORT
-    volumes:
-      - db:/var/lib/postgres
   app:
-    depends_on:
-      - postgresdb
-    build: ./bezkoder-app
-    restart: on-failure
-    env_file: ./.env
+    container_name: app-conta
+    image: app-conta
+    build: ./
     ports:
-      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+      - "8013:8013"
+    depends_on:
+      - dbpostgresql
+  dbpostgresql:
+    image: postgres
+    ports:
+      - "5432:5432"
     environment:
-      SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:postgresql://postgresdb:$POSTGRESDB_DOCKER_PORT/$POSTGRESDB_DATABASE",
-        "spring.datasource.username" : "$POSTGRESDB_USER",
-        "spring.datasource.password" : "$POSTGRESDB_ROOT_PASSWORD",
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect",
-        "spring.jpa.hibernate.ddl-auto" : "update"
-      }'
-    volumes:
-      - .m2:/root/.m2
-    stdin_open: true
-    tty: true
-
-volumes:
-  db:
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=desafio
